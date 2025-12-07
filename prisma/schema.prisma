@@ -9,9 +9,19 @@ datasource db {
 
 model User {
   id        String   @id @default(cuid())
+  username  String   @unique
   email     String   @unique
   password  String
   role      Role     @default(CLIENT)
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  people    Int
+  date      DateTime
   createdAt DateTime @default(now())
 }
 
