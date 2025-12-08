@@ -18,8 +18,10 @@ import { Input } from '@/components/ui/input';
 
 const formSchema = z.object({
   username: z.string().min(3, "L'Username dev'essere almeno di 3 lettere."),
-  email: z.email('Inserisci Mail valida').min(3, "La mail dev'essere almeno di 3 lettere"),
-  password: z.string().min(6, "La Password dev'essere almeno di 6 lettere")
+  email: z
+    .email('Inserisci Mail valida')
+    .min(3, "La mail dev'essere almeno di 3 lettere"),
+  password: z.string().min(6, "La Password dev'essere almeno di 6 lettere"),
 });
 
 function onSubmit(values: z.infer<typeof formSchema>) {
@@ -100,31 +102,10 @@ export default function SignInForm() {
         />
         <Button
           type="submit"
-          className="bg-white/75 text-black text-xl p-4 hover:bg-white hover:text-black cursor-pointer transition-colors duration-300">
+          className="bg-emerald-400 text-foreground text-xl px-6 py-5 uppercase font-bold hover:bg-emerald-500 hover:text-foreground cursor-pointer transition-colors duration-300">
           Log In
         </Button>
       </form>
     </Form>
-    // <form onSubmit={handleSubmit} className="flex flex-col">
-    //   <div className="flex flex-col bg-amber-100 p-4">
-    //     <label className="text-2xl italic text-slate-950" htmlFor="username">
-    //       Username
-    //     </label>
-    //     <input className="bg-white p-3" type="text" name="username" />
-    //   </div>
-    //   <div className="flex flex-col bg-amber-100 p-4">
-    //     <label className="text-2xl italic text-slate-950" htmlFor="email">
-    //       Email
-    //     </label>
-    //     <input className="bg-white p-3" type="email" name="email" />
-    //   </div>
-    //   <div className="flex flex-col bg-amber-100 p-4">
-    //     <label className="text-2xl italic text-slate-950" htmlFor="password">
-    //       Password
-    //     </label>
-    //     <input className="bg-white p-3 text-black" type="password" name="password" />
-    //   </div>
-    //   <button type="submit" className="bg-red-700 cursor-pointer hover:bg-red-900 transition-colors duration-300 text-2xl p-2 w-[30%]">Login</button>
-    // </form>
   );
 }

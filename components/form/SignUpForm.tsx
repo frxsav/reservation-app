@@ -45,12 +45,12 @@ export default function SignUpForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">
+              <FormLabel>
                 Username
               </FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-background/50 text-foreground placeholder:text-foreground/90"
                   placeholder="Username"
                   {...field}
                 />
@@ -65,10 +65,10 @@ export default function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">Email</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-background/50 text-foreground placeholder:text-foreground/90"
                   placeholder="email@gmail.com"
                   {...field}
                 />
@@ -83,12 +83,12 @@ export default function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">
+              <FormLabel>
                 Password
               </FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-background/50 text-foreground placeholder:text-foreground/90"
                   type="password"
                   placeholder="La tua Password"
                   {...field}
@@ -101,7 +101,7 @@ export default function SignUpForm() {
         />
         <Button
           type="submit"
-          className="bg-white/75 text-black text-xl p-4 hover:bg-white hover:text-black cursor-pointer transition-colors duration-300">
+          className="bg-emerald-400 text-foreground text-xl px-6 py-5 uppercase font-bold hover:bg-emerald-500 hover:text-foreground cursor-pointer transition-colors duration-300">
           Registrati
         </Button>
       </form>
