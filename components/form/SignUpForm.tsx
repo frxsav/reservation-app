@@ -15,20 +15,21 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-  username: z.string().min(3, "L'Username dev'essere almeno di 3 lettere.").max(20),
+  username: z
+    .string()
+    .min(3, "L'Username dev'essere almeno di 3 lettere.")
+    .max(20),
   email: z
     .email('Inserisci Mail valida')
     .min(3, "La mail dev'essere almeno di 3 lettere"),
   password: z.string().min(6, "La Password dev'essere almeno di 6 lettere"),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
-}
-
 export default function SignUpForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,6 +38,24 @@ export default function SignUpForm() {
       password: '',
     },
   });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const response = await fetch('/api/user/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      }),
+    });
+
+    if (response.ok) {
+      router.push('/login');
+    } else {
+      console.error('La registrazione non è andata a buon fine.');
+    }
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -45,9 +64,7 @@ export default function SignUpForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Username
-              </FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
                   className="bg-background/50 text-foreground placeholder:text-foreground/90"
@@ -83,9 +100,7 @@ export default function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                Password
-              </FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
                   className="bg-background/50 text-foreground placeholder:text-foreground/90"

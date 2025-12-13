@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
 
 export async function POST(request: Request) {
+  console.info('request: ', request);
   try {
     const body = await request.json();
     const { email, username, password } = body;
