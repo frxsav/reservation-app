@@ -98,7 +98,7 @@ function FormLabel({
       data-slot="form-label"
       data-error={!!error}
       className={cn(
-        'data-[error=true]:text-destructive text-primary-foreground text-xl italic',
+        'data-[error=true]:text-destructive text-xl italic text-emerald-600',
         className
       )}
       htmlFor={formItemId}

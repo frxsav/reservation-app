@@ -8,13 +8,13 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 const formSchema = z.object({
   username: z.string().min(3, "L'Username dev'essere almeno di 3 lettere."),
@@ -45,18 +45,15 @@ export default function SignInForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">
-                Username
-              </FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
                   type="text"
                   placeholder="Username"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>Il tuo Username.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -66,15 +63,14 @@ export default function SignInForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">Email</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
                   placeholder="email@gmail.com"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>La tua Mail.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -84,27 +80,32 @@ export default function SignInForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white text-xl italic">
-                Password
-              </FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-white/50 text-black placeholder:text-black/75"
+                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
                   type="password"
                   placeholder="La tua Password"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>La tua Password.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button
           type="submit"
-          className="bg-emerald-400 text-foreground text-xl px-6 py-5 uppercase font-bold hover:bg-emerald-500 hover:text-foreground cursor-pointer transition-colors duration-300">
-          Log In
+          className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+          Login
         </Button>
+        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-400 before:mr-4 before:block before:h-px before:grow before:bg-stone-400 after:ml-4 after:block after:h-px after:grow after:bg-stone-400">
+          o
+        </div>
+        <Link
+          href={'/registrazione'}
+          className="bg-linear-to-br w-full rounded-none flex justify-center font-semibold mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-2 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+          Registrati
+        </Link>
       </form>
     </Form>
   );
