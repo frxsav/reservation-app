@@ -15,49 +15,42 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
-  username: z.string().min(3, "L'Username dev'essere almeno di 3 lettere."),
   email: z
     .email('Inserisci Mail valida')
     .min(3, "La mail dev'essere almeno di 3 lettere"),
   password: z.string().min(6, "La Password dev'essere almeno di 6 lettere"),
 });
 
-function onSubmit(values: z.infer<typeof formSchema>) {
-  console.log(values);
-}
-
 export default function SignInForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
       email: '',
       password: '',
     },
   });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const singInData = await signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      // Senza redirect: false non si può fare un redirect custom dopo il login
+      redirect: false,
+    });
+    if (singInData?.error) {
+      console.info(singInData.error);
+    } else {
+      router.push('/admin');
+    }
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
-                  type="text"
-                  placeholder="Username"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="email"
