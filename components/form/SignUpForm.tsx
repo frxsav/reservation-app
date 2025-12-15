@@ -14,14 +14,10 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useRouter, redirect } from 'next/navigation';
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(3, "L'Username dev'essere almeno di 3 lettere.")
-    .max(20),
+  name: z.string().min(3, "L'Username dev'essere almeno di 3 lettere.").max(20),
   email: z
     .email('Inserisci Mail valida')
     .min(3, "La mail dev'essere almeno di 3 lettere"),
@@ -113,17 +109,20 @@ export default function SignUpForm() {
         />
         <Button
           type="submit"
-          className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+          className="m-0 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
           Registrati
         </Button>
-        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-400 before:mr-4 before:block before:h-px before:grow before:bg-stone-400 after:ml-4 after:block after:h-px after:grow after:bg-stone-400">
+        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-200 before:mr-4 before:block before:h-px before:grow before:bg-stone-200 after:ml-4 after:block after:h-px after:grow after:bg-stone-200">
           o
         </div>
-        <Link
-          href={'/login'}
-          className="bg-linear-to-br w-full rounded-none flex justify-center font-semibold mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-2 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+        <Button
+          type="button"
+          onClick={() => {
+            redirect(`${window.location.origin}/login`);
+          }}
+          className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
           Accedi
-        </Link>
+        </Button>
       </form>
     </Form>
   );

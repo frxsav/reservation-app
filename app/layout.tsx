@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Orbitron } from 'next/font/google';
 import './globals.css';
+import Navbar from '@/components/Navbar';
 
 const orbitron = Orbitron({
   variable: '--font-orbitron',
@@ -19,7 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${orbitron.variable} font-orbitron bg-zinc-950`}>
+      <body className={`${orbitron.variable} font-orbitron bg-zinc-950 pt-16`}>
+        <Navbar />
         {children}
       </body>
     </html>
