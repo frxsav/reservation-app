@@ -67,7 +67,7 @@ export default function SignUpForm() {
               <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
+                  className="bg-stone-200 text-foreground placeholder:text-foreground/90"
                   placeholder="Username"
                   {...field}
                 />
@@ -84,7 +84,7 @@ export default function SignUpForm() {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
+                  className="bg-stone-200 text-foreground placeholder:text-foreground/90"
                   placeholder="email@gmail.com"
                   {...field}
                 />
@@ -101,7 +101,7 @@ export default function SignUpForm() {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
+                  className="bg-stone-200 text-foreground placeholder:text-foreground/90 placeholder:text-base text-2xl placeholder:font-normal font-bold"
                   type="password"
                   placeholder="La tua Password"
                   {...field}

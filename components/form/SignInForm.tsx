@@ -59,7 +59,7 @@ export default function SignInForm() {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
+                  className="bg-stone-200 text-foreground placeholder:text-foreground/90 text-lg"
                   placeholder="email@gmail.com"
                   {...field}
                 />
@@ -76,7 +76,7 @@ export default function SignInForm() {
               <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
-                  className="bg-stone-400 text-foreground placeholder:text-foreground/90"
+                  className="bg-stone-200 text-foreground placeholder:text-foreground/90 placeholder:text-base placeholder:font-normal text-2xl font-bold"
                   type="password"
                   placeholder="La tua Password"
                   {...field}
@@ -91,7 +91,7 @@ export default function SignInForm() {
           className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
           Login
         </Button>
-        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-400 before:mr-4 before:block before:h-px before:grow before:bg-stone-400 after:ml-4 after:block after:h-px after:grow after:bg-stone-400">
+        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-200 before:mr-4 before:block before:h-px before:grow before:bg-stone-200 after:ml-4 after:block after:h-px after:grow after:bg-stone-200">
           o
         </div>
         <Link
