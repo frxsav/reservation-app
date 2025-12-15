@@ -1,16 +1,16 @@
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { hash } from 'bcrypt';
+import { getUserByEmail, getUserByUsername } from '../user';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, username, password } = body;
+    const { email, name, password } = body;
+    console.info('Prisma route: ', prisma);
 
     // email check
-    const existingUserByEmail = await prisma.user.findUnique({
-      where: { email: email },
-    });
+    const existingUserByEmail = await getUserByEmail(email);
     if (existingUserByEmail) {
       return NextResponse.json(
         { user: null, message: 'La mail è già associata ad un altro account.' },
@@ -18,10 +18,8 @@ export async function POST(request: Request) {
       );
     }
     // username check
-    const existingUserByUsername = await prisma.user.findUnique({
-      where: { username: username },
-    });
-    if (existingUserByUsername) {
+    const existingUserByame = await getUserByUsername(name);
+    if (existingUserByame) {
       return NextResponse.json(
         {
           user: null,
@@ -34,7 +32,7 @@ export async function POST(request: Request) {
     const hashedPassword = await hash(password, 10);
     const newUser = await prisma.user.create({
       data: {
-        username,
+        name,
         email,
         password: hashedPassword,
       },

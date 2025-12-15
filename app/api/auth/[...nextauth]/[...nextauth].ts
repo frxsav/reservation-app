@@ -4,9 +4,15 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 import { compareSync } from 'bcrypt';
 import { prisma } from '@/lib/prisma';
+import { getUserById } from '../../user/user';
+import { Role } from '@prisma/client';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+  },
   pages: {
     signIn: '/login',
   },
@@ -31,6 +37,7 @@ export const authOptions: NextAuthOptions = {
         const existingUser = await prisma.user.findUnique({
           where: { email: credentials?.email },
         });
+        console.info('user: ', existingUser);
         if (!existingUser) return null;
 
         // Check se la password è quella giusta
@@ -44,9 +51,30 @@ export const authOptions: NextAuthOptions = {
         return {
           id: `${existingUser.id}`,
           email: existingUser.email,
-          username: existingUser.username,
+          name: existingUser.name,
         };
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token }) {
+      // check sull'id
+      if (!token.sub) return token;
+
+      const existingUser = await getUserById(token.sub);
+
+      // check se l'utente esiste
+      if (!existingUser) return token;
+      // passaggio del token alla session sotto (jwt -> session)
+      token.role = existingUser.role;
+      return token;
+    },
+    async session({ session, token }) {
+      // si aggiunge il ruolo allo user della session se presente nel token di jwt
+      if (token.role && session.user) {
+        session.user.role = token.role as Role;
+      }
+      return session;
+    },
+  },
 };

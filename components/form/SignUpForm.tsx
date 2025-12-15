@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const formSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(3, "L'Username dev'essere almeno di 3 lettere.")
     .max(20),
@@ -33,7 +33,7 @@ export default function SignUpForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
+      name: '',
       email: '',
       password: '',
     },
@@ -44,7 +44,7 @@ export default function SignUpForm() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: values.username,
+        name: values.name,
         email: values.email,
         password: values.password,
       }),
@@ -61,7 +61,7 @@ export default function SignUpForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
