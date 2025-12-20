@@ -44,6 +44,7 @@ export default function SignInForm() {
     if (singInData?.error) {
       console.info(singInData.error);
     } else {
+      router.refresh();
       router.push('/admin');
     }
   };
