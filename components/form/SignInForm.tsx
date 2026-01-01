@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -17,6 +18,9 @@ import { Input } from '@/components/ui/input';
 import { signIn } from 'next-auth/react';
 import { useRouter, redirect } from 'next/navigation';
 
+import { AlertCircleIcon } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+
 const formSchema = z.object({
   email: z
     .email('Inserisci Mail valida')
@@ -26,6 +30,7 @@ const formSchema = z.object({
 
 export default function SignInForm() {
   const router = useRouter();
+  const [formError, setFormError] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,6 +47,7 @@ export default function SignInForm() {
       redirect: false,
     });
     if (singInData?.error) {
+      setFormError(true);
       console.info(singInData.error);
     } else {
       router.refresh();
@@ -86,6 +92,19 @@ export default function SignInForm() {
             </FormItem>
           )}
         />
+        {/* Alert di errore se le credenziali sono errate */}
+        {formError && (
+          <Alert
+            variant="destructive"
+            className="bg-stone-100/90 border-destructive">
+            <AlertCircleIcon />
+            <AlertTitle>Credenziali Errate</AlertTitle>
+            <AlertDescription>
+              <p>Verifica i dati inseriti e riprova.</p>
+            </AlertDescription>
+          </Alert>
+        )}
+
         <Button
           type="submit"
           className="m-0 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">

@@ -6,8 +6,7 @@ import { getUserByEmail, getUserByUsername } from '../user';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { email, name, password } = body;
-    console.info('Prisma route: ', prisma);
+    const { email, name, password, role } = body;
 
     // email check
     const existingUserByEmail = await getUserByEmail(email);
@@ -35,6 +34,7 @@ export async function POST(request: Request) {
         name,
         email,
         password: hashedPassword,
+        role,
       },
     });
     // removing password from response
