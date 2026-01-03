@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth';
 export default async function Admin() {
   const session = await getServerSession(authOptions);
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-12">
+    <div className="h-screen flex flex-col items-center mt-24 gap-12">
       <div className="flex flex-col items-center">
         <span className="text-2xl text-emerald-600">{session?.user?.role}</span>
         <h1 className="text-3xl text-background font-bold">

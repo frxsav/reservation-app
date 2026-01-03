@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import Link from 'next/link';
 
 export default async function BookingsPage() {
   const user = await GetCurrentUser();
@@ -25,7 +26,16 @@ export default async function BookingsPage() {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">Gestione Prenotazioni</h1>
+      <div className="flex flex-col pl-[5%] mb-6">
+        <h1 className="text-3xl font-bold text-stone-100">
+          Gestione Prenotazioni
+        </h1>
+        <Link href={'/admin'}>
+          <span className="text-lg text-emerald-600 hover:underline">
+            Effettua una prenotazione
+          </span>
+        </Link>
+      </div>
 
       <Table>
         <TableHeader>

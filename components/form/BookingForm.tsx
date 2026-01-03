@@ -17,11 +17,13 @@ import { Input } from '@/components/ui/input';
 import { createBooking } from '@/app/actions/booking';
 
 import { Calendar } from '@/components/ui/calendar';
+import Link from 'next/link';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { redirect } from 'next/navigation';
 
 const formSchema = z.object({
   name: z.string().min(5),
@@ -104,6 +106,7 @@ export default function BookingForm() {
                 <FormControl>
                   <Input
                     className="bg-stone-200 text-foreground placeholder:text-foreground/90 text-lg w-64"
+                    placeholder="0"
                     {...field}
                   />
                 </FormControl>
@@ -153,6 +156,11 @@ export default function BookingForm() {
           className="mt-12 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
           Prenota Ora
         </Button>
+        <Link
+          href={'/prenotazioni'}
+          className="bg-linear-to-br w-full rounded-none flex justify-center from-stone-100 to-stone-50 text-emerald-600 text-xl py-2 px-3 uppercase tracking-wide hover:from-stone-50 hover:to-stone-100 cursor-pointer transition-colors duration-600">
+          Vai alle Prenotazioni
+        </Link>
       </form>
     </Form>
   );
