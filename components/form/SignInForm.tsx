@@ -15,11 +15,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter, redirect } from 'next/navigation';
 
 import { AlertCircleIcon } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import LogoutButton from '../buttons/LogoutButton';
 
 const formSchema = z.object({
   email: z
@@ -29,6 +30,7 @@ const formSchema = z.object({
 });
 
 export default function SignInForm() {
+  const { data: session } = useSession();
   const router = useRouter();
   const [formError, setFormError] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -55,73 +57,82 @@ export default function SignInForm() {
     }
   };
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  className="bg-stone-200 text-foreground placeholder:text-foreground/90 text-lg"
-                  placeholder="email@gmail.com"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input
-                  className="bg-stone-200 text-foreground placeholder:text-foreground/90 placeholder:text-base placeholder:font-normal text-2xl font-bold"
-                  type="password"
-                  placeholder="La tua Password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {/* Alert di errore se le credenziali sono errate */}
-        {formError && (
-          <Alert
-            variant="destructive"
-            className="bg-stone-100/90 border-destructive">
-            <AlertCircleIcon />
-            <AlertTitle>Credenziali Errate</AlertTitle>
-            <AlertDescription>
-              <p>Verifica i dati inseriti e riprova.</p>
-            </AlertDescription>
-          </Alert>
-        )}
-
-        <Button
-          type="submit"
-          className="m-0 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
-          Login
-        </Button>
-        <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-200 before:mr-4 before:block before:h-px before:grow before:bg-stone-200 after:ml-4 after:block after:h-px after:grow after:bg-stone-200">
-          o
+    <>
+      {session ? (
+        <div className="flex flex-col items-center gap-6">
+          <p className='text-stone-200 text-lg text-center'>Sei già loggato, effettua il logout per cambiare utenza</p>
+          <LogoutButton />
         </div>
-        <Button
-          type="button"
-          onClick={() => {
-            redirect(`${window.location.origin}/registrazione`);
-          }}
-          className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
-          Registrazione
-        </Button>
-      </form>
-    </Form>
+      ) : (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-stone-200 text-foreground placeholder:text-foreground/90 text-lg"
+                      placeholder="email@gmail.com"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-stone-200 text-foreground placeholder:text-foreground/90 placeholder:text-base placeholder:font-normal text-2xl font-bold"
+                      type="password"
+                      placeholder="La tua Password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Alert di errore se le credenziali sono errate */}
+            {formError && (
+              <Alert
+                variant="destructive"
+                className="bg-stone-100/90 border-destructive">
+                <AlertCircleIcon />
+                <AlertTitle>Credenziali Errate</AlertTitle>
+                <AlertDescription>
+                  <p>Verifica i dati inseriti e riprova.</p>
+                </AlertDescription>
+              </Alert>
+            )}
+
+            <Button
+              type="submit"
+              className="m-0 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+              Login
+            </Button>
+            <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-200 before:mr-4 before:block before:h-px before:grow before:bg-stone-200 after:ml-4 after:block after:h-px after:grow after:bg-stone-200">
+              o
+            </div>
+            <Button
+              type="button"
+              onClick={() => {
+                redirect(`${window.location.origin}/registrazione`);
+              }}
+              className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+              Registrazione
+            </Button>
+          </form>
+        </Form>
+      )}
+    </>
   );
 }
