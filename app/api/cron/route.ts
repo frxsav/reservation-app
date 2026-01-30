@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return new Response('Non autorizzato', { status: 401 });
   }
+  // afadfa f
 
   // 2. Chiamata al database per risvegliarlo così che Supabase non lo disattiva per inattività
   // La chiamata chiede quante righe ci sono nella tabella "user"
