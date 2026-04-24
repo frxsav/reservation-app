@@ -27,11 +27,11 @@ export default async function BookingsPage() {
   return (
     <div className="container mx-auto py-10">
       <div className="flex flex-col pl-[5%] mb-6">
-        <h1 className="text-3xl font-bold text-stone-100">
+        <h1 className="text-4xl font-bold text-stone">
           Gestione Prenotazioni
         </h1>
         <Link href={'/admin'}>
-          <span className="text-lg text-green hover:underline">
+          <span className="text-xl font-semibold text-green hover:underline">
             Effettua una prenotazione
           </span>
         </Link>
@@ -77,7 +77,7 @@ export default async function BookingsPage() {
                 {user.role === 'ADMIN' && (
                   <TableCell className="text-right">
                     {/* Qui potrai mettere un bottone per cancellare o modificare */}
-                    <button className="text-red-600 hover:underline cursor-pointer">
+                    <button className="bg-red-600 text-white hover:bg-red-700 transition-all duration-300 px-2 py-1 text-lg cursor-pointer">
                       Elimina
                     </button>
                   </TableCell>

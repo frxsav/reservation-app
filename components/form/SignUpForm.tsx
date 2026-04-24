@@ -152,7 +152,7 @@ export default function SignUpForm() {
             />
             <Button
               type="submit"
-              className="borer-t-2 border-light-green m-0 bg-green w-full rounded-none flex mx-auto text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:bg-dark-green cursor-pointer transition-colors duration-600">
+              className="border-t-2 border-light-green m-0 bg-green w-full rounded-none flex mx-auto text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:bg-dark-green cursor-pointer transition-colors duration-600">
               Registra nuovo utente
             </Button>
           </form>

@@ -158,7 +158,7 @@ export default function BookingForm() {
         </Button>
         <Link
           href={'/prenotazioni'}
-          className="bg-linear-to-br w-full rounded-none flex justify-center from-stone-100 to-stone-50 text-green text-xl py-2 px-3 uppercase tracking-wide hover:from-stone-50 hover:to-stone-100 cursor-pointer transition-colors duration-600">
+          className="bg-stone-200 backdrop-blur-lg border hover:bg-green hover:text-stone-200 border-green w-full rounded-none flex justify-center text-green text-xl py-2 px-3 uppercase tracking-wide cursor-pointer transition-colors duration-600">
           Vai alle Prenotazioni
         </Link>
       </form>
