@@ -12,7 +12,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     >
       <table
         data-slot="table"
-        className={cn("w-[90%] caption-bottom text-sm border border-emerald-600", className)}
+        className={cn("w-[90%] caption-bottom text-sm border border-green", className)}
         {...props}
       />
     </div>
@@ -44,7 +44,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "bg-stone-100/90 data-[state=selected]:bg-muted border-b border-emerald-600 transition-colors",
+        "bg-stone-100/90 data-[state=selected]:bg-muted border-b border-green transition-colors",
         className
       )}
       {...props}
@@ -57,7 +57,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
     <th
       data-slot="table-head"
       className={cn(
-        "text-emerald-600 h-12 px-2 text-lg text-left font-medium",
+        "text-green h-12 px-2 text-lg text-left font-medium",
         className
       )}
       {...props}

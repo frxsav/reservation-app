@@ -21,7 +21,8 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${orbitron.variable} font-orbitron bg-zinc-950 pt-16`}>
+      <body
+        className={`${orbitron.variable} font-orbitron bg-[url('/minecraft_sky.webp')] bg-no-repeat bg-cover pt-16`}>
         <Providers>
           <Navbar />
           {children}

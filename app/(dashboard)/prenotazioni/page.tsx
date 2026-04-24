@@ -31,7 +31,7 @@ export default async function BookingsPage() {
           Gestione Prenotazioni
         </h1>
         <Link href={'/admin'}>
-          <span className="text-lg text-emerald-600 hover:underline">
+          <span className="text-lg text-green hover:underline">
             Effettua una prenotazione
           </span>
         </Link>

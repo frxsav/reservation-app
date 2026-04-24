@@ -153,12 +153,12 @@ export default function BookingForm() {
 
         <Button
           type="submit"
-          className="mt-12 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+          className="mt-12 bg-green border-t-2 border-light-green w-full rounded-none flex mx-auto text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:bg-dark-green cursor-pointer transition-colors duration-600">
           Prenota Ora
         </Button>
         <Link
           href={'/prenotazioni'}
-          className="bg-linear-to-br w-full rounded-none flex justify-center from-stone-100 to-stone-50 text-emerald-600 text-xl py-2 px-3 uppercase tracking-wide hover:from-stone-50 hover:to-stone-100 cursor-pointer transition-colors duration-600">
+          className="bg-linear-to-br w-full rounded-none flex justify-center from-stone-100 to-stone-50 text-green text-xl py-2 px-3 uppercase tracking-wide hover:from-stone-50 hover:to-stone-100 cursor-pointer transition-colors duration-600">
           Vai alle Prenotazioni
         </Link>
       </form>

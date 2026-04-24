@@ -116,7 +116,7 @@ export default function SignInForm() {
 
             <Button
               type="submit"
-              className="m-0 bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+              className="m-0 bg-green border-t-2 border-light-green w-full rounded-none flex mx-auto text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:bg-dark-green cursor-pointer transition-colors duration-600">
               Login
             </Button>
             <div className="mx-auto my-4 flex w-full items-center justify-evenly text-stone-200 before:mr-4 before:block before:h-px before:grow before:bg-stone-200 after:ml-4 after:block after:h-px after:grow after:bg-stone-200">
@@ -127,7 +127,7 @@ export default function SignInForm() {
               onClick={() => {
                 redirect(`${window.location.origin}/registrazione`);
               }}
-              className="bg-linear-to-br w-full rounded-none flex mx-auto from-emerald-700 to-emerald-600 text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:from-emerald-600 hover:to-emerald-700 cursor-pointer transition-colors duration-600">
+              className="bg-green w-full border-t-2 border-light-green rounded-none flex mx-auto text-stone-100 text-xl px-6 py-5 uppercase tracking-wide hover:bg-dark-green cursor-pointer transition-colors duration-600">
               Registrazione
             </Button>
           </form>
